@@ -1,2 +1,5 @@
 *.pyc
 .DS_Store
+asset_bundles.egg-info/
+build/
+dist/
