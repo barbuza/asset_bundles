@@ -47,7 +47,11 @@ class Command(BaseCommand):
     
     def process_template(self, template):
         with open(template) as fp:
-            tmpl = Template(fp.read().decode("utf-8"))
+            try:
+                tmpl = Template(fp.read().decode("utf-8"))
+            except UnicodeDecodeError:
+                print "skipping %r - it has non-unicode symbols" % template
+                return
         result = []
         def _recurse_node(node):
             if node is not None and isinstance(node, AssetsNode):
