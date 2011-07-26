@@ -47,7 +47,7 @@ class Command(BaseCommand):
     
     def process_template(self, template):
         with open(template) as fp:
-            tmpl = Template(fp.read())
+            tmpl = Template(fp.read().decode("utf-8"))
         result = []
         def _recurse_node(node):
             if node is not None and isinstance(node, AssetsNode):
