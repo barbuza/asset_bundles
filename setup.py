@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name="asset_bundles",
-    version="0.1.2",
+    version="0.1.3",
     packages=["asset_bundles", "asset_bundles.management",
               "asset_bundles.management.commands",
               "asset_bundles.templatetags"],

@@ -5,6 +5,7 @@ import os
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.template import Template
+from django.template.base import TemplateSyntaxError
 
 from ...templatetags.assets import AssetsNode
 
@@ -51,6 +52,9 @@ class Command(BaseCommand):
                 tmpl = Template(fp.read().decode("utf-8"))
             except UnicodeDecodeError:
                 print "skipping %r - it has non-unicode symbols" % template
+                return
+            except TemplateSyntaxError as err:
+                print "skipping %r - it has sytax error %r" % (template, err)
                 return
         result = []
         def _recurse_node(node):
